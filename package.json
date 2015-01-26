@@ -1,0 +1,9 @@
+{
+  "name": "ef-testable",
+  "version": "1.0.0",
+  "dependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-msbuild": "^0.2.5"
+  }
+}
