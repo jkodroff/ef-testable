@@ -22,6 +22,8 @@ For<IReadOnlyDataSession>().HybridHttpOrThreadLocalScoped().Use<ReadOnlyEntityDa
 // This means one instance for every class which consumes it.  Possibly a sub-optimal strategy (author is not sure just yet):
 For<IDataSession>().Use<EntityDataSession>();
 
+For<System.Data.Entity.DbContext>().Use<YourAppDbContext>();
+
 ```
 
 Given this controller:
