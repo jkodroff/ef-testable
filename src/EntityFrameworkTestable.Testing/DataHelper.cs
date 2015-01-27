@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using Moq;
 
-namespace EntityFrameworkTestable
+namespace EntityFrameworkTestable.Testing
 {
     public static class DataHelper
     {

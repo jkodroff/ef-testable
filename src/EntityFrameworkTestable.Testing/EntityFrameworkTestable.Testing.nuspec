@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>EntityFrameworkTestable.Testing</id>
+    <version>$version$</version>
+    <description>
+      EntityFrameworkTestable provides wrappers around EF class to make them more testable.  
+      Add this NuGet package (EntityFrameworkTestable.Testing) to your test assemblies.
+      Add package EntityFrameworkTestable to your non-test assemblies which require EntityFramework.
+    </description>
+    <title>$title$</title>
+    <authors>Josh Kodroff</authors>
+    <owners>Josh Kodroff</owners>
+    <projectUrl>http://github.com/jkodroff/ef-testable</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2015 Josh Kodroff, All Rights Reserved</copyright>
+    <dependencies>
+      <dependency id="EntityFrameworkTestable" version="$version$" />
+    </dependencies>
+    <tags>entityframework tdd</tags>
+  </metadata>
+</package>

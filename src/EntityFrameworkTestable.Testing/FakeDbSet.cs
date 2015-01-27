@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace EntityFrameworkTestable
+namespace EntityFrameworkTestable.Testing
 {
     public class FakeDbSet<T> : IDbSet<T> where T : class
     {

@@ -35,3 +35,4 @@ dataimporter/
 /src/RelocationMoverServices.Web.UI/logs
 /node_modules
 /src/RelocationMoverServices.Web.UI/imagecache
+*.nupkg
