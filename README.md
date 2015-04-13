@@ -13,7 +13,7 @@ The library is grouped into 2 NuGet packages:
 2. `EntityFrameworkTestable.Testing,` which you should reference in your testing assemblies.  This assembly provides the `DataHelper` class, which makes testing EF simpler.
 
 ## Somewhat Contrived Sample Code
-Add some rules to your DI container.  This example used [StructureMap](http://docs.structuremap.net/) 2.0 code, a fine DI container:
+Add some rules to your DI container.  This example uses [StructureMap](http://docs.structuremap.net/), a fine DI container:
 
 ```
 // This means one instance "per-HTTP request":
@@ -44,7 +44,7 @@ public class SomeController {
 
     return model == null
       ? HttpNotFound() as ActionResult;
-      : View(_session);
+      : View(model);
   }
 }
 ```
