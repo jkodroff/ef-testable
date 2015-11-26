@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using Moq;
 
 namespace EntityFrameworkTestable.Testing
@@ -63,6 +64,11 @@ namespace EntityFrameworkTestable.Testing
             }
 
             public void SaveChanges() { }
+
+            public Task SaveChangesAsync()
+            {
+                return Task.FromResult(false);
+            }
 
             public int SqlCommand(string sql, params object[] parameters)
             {

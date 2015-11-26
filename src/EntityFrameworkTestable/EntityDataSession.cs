@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace EntityFrameworkTestable
 {
@@ -30,6 +31,11 @@ namespace EntityFrameworkTestable
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return _dbContext.SaveChangesAsync();
         }
 
         public int SqlCommand(string sql, params object[] parameters)
