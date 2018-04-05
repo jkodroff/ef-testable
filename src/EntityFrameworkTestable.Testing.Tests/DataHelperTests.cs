@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
@@ -30,6 +31,24 @@ namespace EntityFrameworkTestable.Testing
                 .Session(new SomeEntity())
                 .Set<SomeOtherEntity>()
                 .Should().BeNull();
+        }
+
+        [Test]
+        public async void AsyncRead()
+        {
+            var data = DataHelper
+                .Session(new SomeEntity());
+
+            await data.Set<SomeEntity>().ToListAsync();
+        }
+
+        [Test]
+        public async void AsyncWrite()
+        {
+            var data = DataHelper.Session<SomeEntity>();
+
+            data.Set<SomeEntity>().Add(new SomeEntity());
+            await data.SaveChangesAsync();
         }
 
         public class SomeEntity

@@ -3,26 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EntityFrameworkTestable.Testing
 {
-    public class FakeDbSet<T> : IDbSet<T> where T : class
+    public class FakeDbSet<T> : IDbSet<T>, IDbAsyncEnumerable<T> where T : class
     {
         private HashSet<T> _data;
         private IQueryable _query;
+        private FakeDbAsyncEnumerator _asyncEnumerator;
 
         public FakeDbSet()
         {
             _data = new HashSet<T>();
             _query = _data.AsQueryable();
+            _asyncEnumerator = new FakeDbAsyncEnumerator(_data.GetEnumerator());
         }
 
         public FakeDbSet(IEnumerable<T> data)
         {
             _data = new HashSet<T>(data);
             _query = _data.AsQueryable();
+            _asyncEnumerator = new FakeDbAsyncEnumerator(_data.GetEnumerator());
         }
 
         public virtual T Find(params object[] keyValues)
@@ -96,6 +102,37 @@ namespace EntityFrameworkTestable.Testing
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return _data.GetEnumerator();
+        }
+
+        public IDbAsyncEnumerator<T> GetAsyncEnumerator()
+        {
+            return _asyncEnumerator;
+        }
+
+        IDbAsyncEnumerator IDbAsyncEnumerable.GetAsyncEnumerator()
+        {
+            return GetAsyncEnumerator();
+        }
+
+        private class FakeDbAsyncEnumerator : IDbAsyncEnumerator<T>
+        {
+            private IEnumerator<T> _enumerator;
+
+            public FakeDbAsyncEnumerator(IEnumerator<T> enumerator)
+            {
+                _enumerator = enumerator;
+            }
+
+            public void Dispose() { }
+
+            public Task<bool> MoveNextAsync(CancellationToken cancellationToken)
+            {
+                return Task.FromResult(_enumerator.MoveNext());
+            }
+
+            public T Current => _enumerator.Current;
+
+            object IDbAsyncEnumerator.Current => Current;
         }
     }
 }
