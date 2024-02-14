@@ -15,7 +15,7 @@ The library is grouped into 2 NuGet packages:
 ## Somewhat Contrived Sample Code
 Add some rules to your DI container.  This example uses [StructureMap](http://docs.structuremap.net/), a fine DI container:
 
-```
+```csharp
 // This means one instance "per-HTTP request":
 For<IReadOnlyDataSession>().HybridHttpOrThreadLocalScoped().Use<ReadOnlyEntityDataSession>();
 
@@ -28,7 +28,7 @@ For<System.Data.Entity.DbContext>().Use<YourAppDbContext>();
 
 Given this controller:
 
-```
+```csharp
 using EntityFrameworkTestable;
 
 
@@ -51,7 +51,7 @@ public class SomeController {
 
 It could be tested like this (using [FluentAssertions](http://www.fluentassertions.com/) and [NUnit](http://www.nunit.org/) in this example):
 
-```
+```csharp
 using EntityFrameworkTestable.Testing;
 using FluentAssertions;
 
